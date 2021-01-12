@@ -1,0 +1,87 @@
+/* background white  */
+:root{
+    --white : #fff;
+    --black : #000;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/****************************************************HOME PAGE*************************************************/
+.text-center{
+    text-align: center;
+}
+
+.container{
+    max-width: 992px;
+    margin: 20px auto;
+}
+
+body{
+    background: url('../img/pattern.jpg');
+    font-family: 'Slabo 27px';
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    background: var(--white);
+}
+
+header li{
+    display: inline-block;
+    margin-right: 30px;
+    padding: 20px 0;
+}
+
+section{
+    background: var(--white);
+}
+
+h1.text-center{
+    padding-top: 30px;
+}
+
+section .article-list-item{
+    padding: 32px 10px;
+}
+
+section .article-list-item p{
+    padding: 15px 0;
+    border-bottom: 1px solid var(--black);
+}
+
+footer{
+    background: var(--black);
+    color: var(--white);
+    padding: 20px 0;
+}
+
+/****************************************************ABOUT PAGE*************************************************/
+.container>h1{
+    padding-bottom: 15px;
+}
+
+/****************************************************CONTACT PAGE*************************************************/
+.contact-us h1, .message h1{
+    padding-bottom: 15px;
+}
+
+.form-group{
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 20% auto;
+}
+
+input,textarea{
+    padding: 5px;
+}
+
+button{
+    padding: 5px 10px;
+    margin: 20px 0;
+}
+
