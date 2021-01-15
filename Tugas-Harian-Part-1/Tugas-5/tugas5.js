@@ -46,10 +46,10 @@ console.log("=== SOAL 4 ===");
 // soal 4
 var arrayDaftarPeserta = ["Asep", "laki-laki", "baca buku", 1992];
 var objDaftarPeserta = {
-  nama: "Asep",
-  "jenis kelamin": "laki-laki",
-  hobi: "baca buku",
-  "tahun lahir": 1992,
+  nama: arrayDaftarPeserta[0],
+  "jenis kelamin": arrayDaftarPeserta[1],
+  hobi: arrayDaftarPeserta[2],
+  "tahun lahir": arrayDaftarPeserta[3],
 };
 
 console.log(objDaftarPeserta);
