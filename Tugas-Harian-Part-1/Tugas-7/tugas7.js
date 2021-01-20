@@ -66,13 +66,12 @@ console.log();
 // soal 2
 console.log("----SOAL 2----");
 class Clock {
-  constructor(template, timer) {
+  constructor({ template }, timer) {
     this.timer = timer;
     this.template = template;
-    this.render = this.render.bind(this);
   }
 
-  render = () => {
+  render() {
     let date = new Date();
 
     let hours = date.getHours();
@@ -84,19 +83,21 @@ class Clock {
     let secs = date.getSeconds();
     if (secs < 10) secs = "0" + secs;
 
-    let output = this.template.hours + this.template.mins + this.template.secs;
+    let output = this.template
+      .replace("h", hours)
+      .replace("m", mins)
+      .replace("s", secs);
 
     console.log(output);
-  };
+  }
 
-  stop = () => {
+  stop() {
     clearInterval(this.timer);
-  };
+  }
 
-  start = () => {
-    this.render();
-    this.timer = setInterval(this.render(), 1000);
-  };
+  start() {
+    this.timer = setInterval(this.render.bind(this), 1000);
+  }
 }
 
 let clock = new Clock({ template: "h:m:s" });
