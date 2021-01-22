@@ -1,14 +1,12 @@
 import "./App.css";
-import Tittle from "./Component/Title";
-import Form from "./Component/Form";
-import Button from "./Component/Button";
+import Table from "./Tugas-10/Table";
+import Card from "./Tugas-9/Card";
 
 function App() {
   return (
     <div className="container">
-      <Tittle />
-      <Form />
-      <Button />
+      <Card />
+      <Table />
     </div>
   );
 }

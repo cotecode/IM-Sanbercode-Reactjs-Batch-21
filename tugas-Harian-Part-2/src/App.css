@@ -1,6 +1,10 @@
 .container {
   max-width: 800px;
   margin: 20px auto;
+}
+
+/*************** CARD **************/
+.card {
   border: 1px solid #000;
   padding: 0 15px 15px 15px;
   border-radius: 5px;
@@ -18,4 +22,25 @@
 
 input {
   padding: 5px;
+}
+
+/*************** TABLE **************/
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 2px solid #fff;
+}
+
+th{
+  background-color: #aaaaaa;
+}
+
+td {
+  text-align: left;
+  background-color: #FF7F50;
+  font-weight: 500;
 }
