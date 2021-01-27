@@ -56,8 +56,8 @@ const HooksAxios = () => {
       axios
         .put(`http://backendexample.sanbercloud.com/api/fruits/${currentId}`, {
           name: inputName,
-          harga: inputHarga,
-          berat: inputBerat,
+          price: inputHarga,
+          weight: inputBerat,
         })
         .then(() => {
           let singleBuah = daftarBuah.find((el) => el.id === currentId);
