@@ -24,31 +24,26 @@ class List extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     let nama = this.state.nama;
-    let harga = this.state.harga;
+    let harga = this.state.harga.toString();
     let berat = this.state.berat;
-    let newdataHargaBuah = this.state.dataHargaBuah;
+
+    let newDataHargaBuah = this.state.dataHargaBuah;
     let currentIndex = this.state.currentIndex;
 
     if (currentIndex === -1) {
       this.setState({
-        dataHargaBuah: [
-          ...this.state.dataHargaBuah,
-          {
-            nama: nama,
-            harga: harga,
-            berat: berat,
-          },
-        ],
-        input: "",
+        dataHargaBuah: [...newDataHargaBuah, { nama, harga, berat }],
       });
     } else {
-      newdataHargaBuah[currentIndex] = this.state.input;
-      this.setState({
-        newdataHargaBuah,
-        input: "",
-        currentIndex: -1,
-      });
+      newDataHargaBuah[currentIndex] = { nama, harga, berat };
     }
+    this.setState({
+      newDataHargaBuah,
+      nama: "",
+      harga: "",
+      berat: 0,
+      input: ""
+    });
   };
 
   // change
@@ -66,6 +61,7 @@ class List extends React.Component {
       namaBuah: dataBuah.nama,
       hargaBuah: dataBuah.harga,
       beratBuah: dataBuah.berat,
+      currentIndex: index
     });
   };
 
@@ -169,7 +165,7 @@ class List extends React.Component {
                 onChange={this.handleChange}
                 value={this.state.beratBuah}
                 required
-                type="text"
+                type="number"
               />
             </div>
             <button style={{ float: "right" }}>Submit</button>
