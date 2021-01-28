@@ -1,5 +1,6 @@
 import "./App.css";
-import HooksAxios from "./Tugas-13/HooksAxios";
+import DaftarBuah from "./Tugas-14/DaftarBuah"
+// import HooksAxios from "./Tugas-13/HooksAxios";
 // import List from "./Tugas-12/List";
 // import Table from "./Tugas-10/Table";
 // import Timer from "./Tugas-11/Timer";
@@ -12,7 +13,8 @@ function App() {
       <Table />
       <Timer /> */}
       {/* <List /> */}
-      <HooksAxios />
+      {/* <HooksAxios /> */}
+      <DaftarBuah />
     </div>
   );
 }
