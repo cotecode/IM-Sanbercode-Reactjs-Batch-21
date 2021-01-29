@@ -73,3 +73,42 @@ td {
   background-color: #4caf50;
   color: white;
 }
+
+/*************** NAV CSS **************/
+* {
+  padding: 0;
+  margin: 0;
+}
+
+nav {
+  border-bottom: 2px solid #b9b9b9b7;
+  margin-bottom: 50px;
+}
+
+li {
+  display: inline-block;
+  margin-left: 20px;
+  padding: 20px;
+}
+
+/*************** BUTTON THEME  **************/
+
+.btnTheme {
+  padding: 20px;
+  font-size: large;
+  width: 100%;
+  cursor: pointer;
+}
+
+.btnTheme:hover {
+  background-color: rgb(10, 12, 53) !important;
+  color: #fff !important;
+}
+
+.light-mode {
+  background-color: #fff;
+}
+
+.dark-mode {
+  background-color: #1a1919;
+}

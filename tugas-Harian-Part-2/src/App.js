@@ -1,20 +1,21 @@
 import "./App.css";
-import DaftarBuah from "./Tugas-14/DaftarBuah"
-// import HooksAxios from "./Tugas-13/HooksAxios";
-// import List from "./Tugas-12/List";
-// import Table from "./Tugas-10/Table";
-// import Timer from "./Tugas-11/Timer";
-// import Card from "./Tugas-9/Card";
+import { BrowserRouter as Router } from "react-router-dom";
+import Routes from "./Tugas-15/Routes";
+import React, { useState, createContext } from "react";
+
+export const DarkModeContext = createContext();
 
 function App() {
+  // declare state
+  const [darkMode, setDarkMode] = useState(false);
+
   return (
-    <div className="container">
-      {/* <Card />
-      <Table />
-      <Timer /> */}
-      {/* <List /> */}
-      {/* <HooksAxios /> */}
-      <DaftarBuah />
+    <div className="App">
+      <DarkModeContext.Provider value={{darkModeVal:[darkMode, setDarkMode]}}>
+        <Router>
+          <Routes />
+        </Router>
+      </DarkModeContext.Provider>
     </div>
   );
 }
