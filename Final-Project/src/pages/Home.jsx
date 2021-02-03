@@ -156,7 +156,7 @@ const Home = () => {
         {daftarMovie !== null && (
           <>
             <h1 style={{ fontSize: "30px", fontWeight: "bold" }}>
-              Upcoming Movies
+              Popular Movies
             </h1>
             <Row gutter={16}>
               {daftarMovie.map((item) => {
