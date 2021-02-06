@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const DetailMovie = ({match}) => {
+const DetailMovie = ({ match }) => {
+  let { id } = useParams();
   const [daftarMovie, setDaftarMovie] = useState(null);
 
-  const time_convert = (num) => {
-    const hours = Math.floor(num / 60);
-    const minutes = num % 60;
-    return `${hours} jam ${minutes} menit`;
-  };
-
-  const fetchMovie = (event) => {
-    let idMovie = event.target.value
+  const fetchMovie = () => {
     axios
-      .get(`https://backendexample.sanbersy.com/api/data-movie/${idMovie}`)
+      .get(`https://backendexample.sanbersy.com/api/data-movie/${id}`)
       .then((response) => {
         setDaftarMovie(response.data);
       })
@@ -24,7 +19,14 @@ const DetailMovie = ({match}) => {
     if (daftarMovie === null) {
       fetchMovie(match.params.id);
     }
+    console.log("");
   }, [daftarMovie]);
+
+  const time_convert = (num) => {
+    const hours = Math.floor(num / 60);
+    const minutes = num % 60;
+    return `${hours} jam ${minutes} menit`;
+  };
 
   return (
     <>

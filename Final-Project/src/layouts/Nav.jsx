@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Menu } from "antd";
+import { Menu, Dropdown } from "antd";
 import { UserContext } from "../context/UserContext";
 import { useHistory } from "react-router-dom";
+import { DownOutlined } from "@ant-design/icons";
 // import logo from "../img/logo.jpg";
 
 const Nav = () => {
@@ -15,19 +16,20 @@ const Nav = () => {
     history.push("/login");
   };
 
-  // const menu = (
-  //   <Menu>
-  //     <Menu.Item key="0">
-  //       <Link onClick={handleLogout}>Logout</Link>
-  //     </Menu.Item>
-  //     <Menu.Item key="1">
-  //       <a href="http://www.taobao.com/">2nd menu item</a>
-  //     </Menu.Item>
-  //     <Menu.Divider />
-  //     <Menu.Item key="3">3rd menu item</Menu.Item>
-  //   </Menu>
-  // );
-  
+  const menu = (
+    <Menu
+      style={{ marginTop: "20px", background: "#001529", width:"120px" }}
+    >
+      <Menu.Item key="0">
+        <Link to="/movielisteditor" style={{color: "#edf5f5"}}>Settings Movie</Link>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="1">
+        <Link to="/gamelisteditor" style={{color: "#edf5f5"}}>Settings Games</Link>
+      </Menu.Item>
+    </Menu>
+  );
+
   return (
     <div className="container-fluid">
       <div className="header">
@@ -60,9 +62,16 @@ const Nav = () => {
             </>
           )}
           {user && (
-            <Menu.Item>
-              <Link to="/movielisteditor">Movie List</Link>
-            </Menu.Item>
+            <Dropdown overlay={menu} placement="bottomLeft">
+              <a
+                className="ant-dropdown-link"
+                onClick={(e) => e.preventDefault()}
+                href="pusing"
+                style={{ color: "#edf5f5", margin: "0 30px" }}
+              >
+                Settings <DownOutlined style={{paddingLeft:"5px"}}/>
+              </a>
+            </Dropdown>
           )}
           {user && (
             <Menu.Item>

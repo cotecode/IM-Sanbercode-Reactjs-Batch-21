@@ -158,50 +158,67 @@ const TableMovie = () => {
   };
 
   return (
-    <section className="container-fluid">
+    <section
+      className="container-fluid"
+      style={{
+        background: "#fff",
+        minHeight: "100vh",
+        boxSizing: "border-box",
+      }}
+    >
       {daftarMovie !== null && (
-        <div style={{ width: "70%", margin: "0 auto", textAlign: "center" }}>
-          <h1>Daftar Peserta Lomba</h1>
-          <table className="peserta-lomba">
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Image</th>
-                <th>Tittle</th>
-                <th>Genre</th>
-                <th>Description</th>
-                <th>Rating</th>
-                <th>Duration</th>
-                <th>Year</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {daftarMovie.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td><img src={item.image_url} alt="img" height="300"/></td>
-                    <td>{item.title}</td>
-                    <td>{item.genre}</td>
-                    <td>{item.description}</td>
-                    <td>{item.rating}</td>
-                    <td>{item.duration}</td>
-                    <td>{item.year}</td>
-                    <td>
-                      <button onClick={handleEdit} value={item.id}>
-                        Edit
-                      </button>
-                      &nbsp;
-                      <button onClick={handleDelete} value={item.id}>
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+        <div>
+            <h1 style={{ fontSize: "30px" }}>Table Movie</h1>
+            <table id="table-list">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Image</th>
+                  <th>Tittle</th>
+                  <th>Genre</th>
+                  <th>Description</th>
+                  <th>Rating</th>
+                  <th>Duration</th>
+                  <th>Year</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {daftarMovie.map((item, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>
+                        <img src={item.image_url} alt="img" height="300" />
+                      </td>
+                      <td>{item.title}</td>
+                      <td>{item.genre}</td>
+                      <td>{item.description}</td>
+                      <td>{item.rating}</td>
+                      <td>{item.duration}</td>
+                      <td>{item.year}</td>
+                      <td>
+                        <button
+                          className="btnEdit"
+                          onClick={handleEdit}
+                          value={item.id}
+                        >
+                          Edit
+                        </button>
+                        &nbsp;
+                        <button
+                          className="btnDelete"
+                          onClick={handleDelete}
+                          value={item.id}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           {/* Form */}
           {/* {user && (
             <>
@@ -220,4 +237,3 @@ const TableMovie = () => {
 };
 
 export default TableMovie;
-

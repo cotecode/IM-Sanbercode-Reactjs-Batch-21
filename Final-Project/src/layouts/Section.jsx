@@ -8,7 +8,8 @@ import Movies from "../pages/Movies";
 import Games from "../pages/Games";
 import Register from "../pages/Register";
 import DetailMovie from "../pages/DetailMovie";
-import TableMovie from "../pages/TableMovies/TableMovie";
+import MovieList from "./MovieList";
+import GameList from "./GameList";
 
 const Section = () => {
   const [user] = useContext(UserContext);
@@ -30,9 +31,10 @@ const Section = () => {
       <Switch>
         <Route exact path="/" user={user} component={Home} />
         <Route exact path="/movies" user={user} component={Movies} />
-        <Route exact path="/detailMovies/id" user={user} component={DetailMovie} />
+        <Route exact path={`/detailMovies/{item.id}`} user={user} component={DetailMovie} />
         <Route exact path="/games" user={user} component={Games} />
-        <PrivateRoute exact path="/movielisteditor" user={user} component={TableMovie} />
+        <PrivateRoute exact path="/movielisteditor" user={user} component={MovieList} />
+        <PrivateRoute exact path="/gamelisteditor" user={user} component={GameList} />
         <LoginRoute exact path="/login" user={user} component={Login} />
         <LoginRoute exact path="/register" user={user} component={Register} />
       </Switch>

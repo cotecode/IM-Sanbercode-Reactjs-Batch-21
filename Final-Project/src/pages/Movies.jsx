@@ -47,28 +47,28 @@ class Movies extends Component {
           }}
         >
           {/* <div className="container-fluid"> */}
-          <h1 style={{ fontSize: "30px", fontWeight: "bold" }}>
-            Movies
-          </h1>
+          <h1 style={{ fontSize: "30px", fontWeight: "bold" }}>Movies</h1>
           <Row gutter={16}>
             {this.state.movie.map((item) => {
               return (
                 <Col span={6}>
-                  <Card
-                    hoverable
-                    style={{ width: 240, borderRadius: "10px" }}
-                    cover={
-                      <img
-                        alt="example"
-                        src={item.image_url}
-                        style={{ borderRadius: "10px" }}
-                        height="400px"
-                      />
-                    }
-                  >
-                    {/* <Link to="/detailMovies/id" /> */}
-                    <Meta title={item.title} description={item.year} />
-                  </Card>
+                  <Link to={`/detailMovies/${item.id}`}>
+                    <Card
+                      hoverable
+                      style={{ width: 240, borderRadius: "10px" }}
+                      cover={
+                        <img
+                          alt="example"
+                          src={item.image_url}
+                          style={{ borderRadius: "10px" }}
+                          height="400px"
+                        />
+                      }
+                    >
+                      {/* <Link to="/detailMovies/id" /> */}
+                      <Meta title={item.title} description={item.year} />
+                    </Card>
+                  </Link>
                   <br />
                 </Col>
               );
