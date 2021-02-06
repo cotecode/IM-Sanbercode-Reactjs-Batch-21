@@ -1,9 +1,12 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { Input } from "antd";
 
 const Login = () => {
+
   let history = useHistory();
   const [, setUser] = useContext(UserContext);
   const [input, setInput] = useState({ email: "", password: "" });
@@ -22,6 +25,7 @@ const Login = () => {
         setUser(currentUser);
         localStorage.setItem("user", JSON.stringify(currentUser));
         history.push("/");
+        window.location.reload();
       })
       .catch((err) => {
         alert(err);
@@ -47,29 +51,69 @@ const Login = () => {
   };
 
   return (
-    <>
-      <div style={{ margin: "0 auto", width: "25%", padding: "50px" }}>
-        <form onSubmit={handleSubmit}>
-          <label>Email: </label>
-          <input
-            type="email"
-            name="email"
-            onChange={handleChange}
-            value={input.email}
-          />
-          <br />
-          <label>Password: </label>
-          <input
-            type="password"
-            name="password"
-            onChange={handleChange}
-            value={input.password}
-          />
-          <br />
-          <button>Login</button>
-        </form>
+    <div style={{ minHeight: "100vh", paddingTop: "100px" }}>
+      <div
+        style={{
+          padding: "50px",
+          background: "#fff",
+          width: "600px",
+          margin: "0 auto",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "50px",
+          }}
+        >
+          <form onSubmit={handleSubmit}>
+            <h1
+              style={{
+                textAlign: "center",
+                fontSize: "30px",
+              }}
+            >
+              LOGIN
+            </h1>
+            <div
+              style={{
+                width: "300px",
+                margin: "0 auto",
+                border: "2px solid rgb(105, 39, 105)",
+                marginBottom: "30px",
+              }}
+            ></div>
+            <label for="email">Email: </label>
+            <Input
+              required
+              type="email"
+              name="email"
+              id="email"
+              onChange={handleChange}
+              value={input.email}
+            />
+            <br />
+            <label for="password">Password: </label>
+            <Input
+              required
+              type="password"
+              name="password"
+              id="password"
+              onChange={handleChange}
+              value={input.password}
+            />
+            <br />
+            <button className="btnAuth">Submit</button>
+            <div style={{ textAlign: "center" }}>
+              Don't have an account?
+              <Link to="/register"> Create Account</Link>
+            </div>
+          </form>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

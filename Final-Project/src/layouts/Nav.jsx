@@ -2,16 +2,32 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
 import { UserContext } from "../context/UserContext";
+import { useHistory } from "react-router-dom";
 // import logo from "../img/logo.jpg";
 
 const Nav = () => {
+  let history = useHistory();
   const [user, setUser] = useContext(UserContext);
 
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem("user");
+    history.push("/login");
   };
 
+  // const menu = (
+  //   <Menu>
+  //     <Menu.Item key="0">
+  //       <Link onClick={handleLogout}>Logout</Link>
+  //     </Menu.Item>
+  //     <Menu.Item key="1">
+  //       <a href="http://www.taobao.com/">2nd menu item</a>
+  //     </Menu.Item>
+  //     <Menu.Divider />
+  //     <Menu.Item key="3">3rd menu item</Menu.Item>
+  //   </Menu>
+  // );
+  
   return (
     <div className="container-fluid">
       <div className="header">
@@ -30,19 +46,27 @@ const Nav = () => {
           <Menu.Item>
             <Link to="/">Home</Link>
           </Menu.Item>
+          <Menu.Item>
+            <Link to="/movies">Movies</Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link to="/games">Games</Link>
+          </Menu.Item>
           {user === null && (
             <>
               <Menu.Item>
-                <Link to="/Register">Register</Link>
-              </Menu.Item>
-              <Menu.Item>
-                <Link to="/Login">Login</Link>
+                <Link to="/login">Login</Link>
               </Menu.Item>
             </>
           )}
           {user && (
             <Menu.Item>
-              <span onClick={handleLogout}>Logout</span>
+              <Link to="/movielisteditor">Movie List</Link>
+            </Menu.Item>
+          )}
+          {user && (
+            <Menu.Item>
+              <Link onClick={handleLogout}>Logout</Link>
             </Menu.Item>
           )}
         </Menu>

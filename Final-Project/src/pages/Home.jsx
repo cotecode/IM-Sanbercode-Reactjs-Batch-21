@@ -1,7 +1,7 @@
 // import React, { Component } from "react";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, Col, Row, Carousel } from "antd";
+import { Card, Col, Row, Carousel} from "antd";
 
 const { Meta } = Card;
 
@@ -150,7 +150,7 @@ const Home = () => {
       </div>
       <div
         className="site-card-wrapper container-fluid"
-        style={{ background: "#fff" }}
+        style={{ background: "#fff", padding: "50px", boxSizing: "border-box" }}
       >
         {/* Movie */}
         {daftarMovie !== null && (
@@ -182,7 +182,8 @@ const Home = () => {
             </Row>
           </>
         )}
-        ,{/*  Game */}
+        <hr style={{ margin: "5% 0", border: "1px solid #eaeaea" }} />,
+        {/*  Game */}
         {daftarGame !== null && (
           <>
             <h1 style={{ fontSize: "30px", fontWeight: "bold" }}>
@@ -205,6 +206,7 @@ const Home = () => {
                       }
                     >
                       <Meta title={item.name} description={item.release} />
+                      <Meta description={item.platform} />
                     </Card>
                     <br />
                   </Col>

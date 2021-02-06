@@ -3,6 +3,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Layout } from "antd";
 import Nav from "./Nav";
 import Section from "./Section";
+import Footer from "./Footer";
+// import { Footer } from "antd/lib/layout/layout";
 
 const { Header, Content } = Layout;
 
@@ -17,6 +19,7 @@ const Main = () => {
           <Content>
             <Section />
           </Content>
+          <Footer />
         </Router>
       </Layout>
     </>
