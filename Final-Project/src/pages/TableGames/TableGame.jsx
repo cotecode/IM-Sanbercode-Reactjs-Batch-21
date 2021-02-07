@@ -1,18 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
+import { Link } from "react-router-dom";
+import { Image } from "antd";
 
 const TableGame = () => {
   const [user] = useContext(UserContext);
   const [daftarGame, setDaftarGame] = useState(null);
-  const [inputName, setInputName] = useState("");
-  const [inputGenre, setInputGenre] = useState("");
-  const [inputSinglePlayer, setInputSinglePlayer] = useState("");
-  const [inputMultiplayer, setInputMultiplayer] = useState("");
-  const [inputPlatform, setInputPlatform] = useState("");
-  const [inputRelease, setInputRelease] = useState("");
-  const [inputImage, setInputImage] = useState("");
-  const [currentId, setCurrentId] = useState(null);
 
   useEffect(() => {
     if (daftarGame === null) {
@@ -38,24 +32,6 @@ const TableGame = () => {
     }
   }, [daftarGame]);
 
-  // handle edit
-  const handleEdit = (event) => {
-    let idGame = event.target.value;
-    axios
-      .get(`https://backendexample.sanbersy.com/api/data-game/${idGame}`)
-      .then((res) => {
-        let data = res.data;
-        setInputName(data.name);
-        setInputGenre(data.genre);
-        setInputSinglePlayer(data.singlePlayer);
-        setInputMultiplayer(data.multiplayer);
-        setInputPlatform(data.platform);
-        setInputRelease(data.release);
-        setInputImage(data.image_url);
-        setCurrentId(data.id);
-      });
-  };
-
   const handleDelete = (event) => {
     let idGame = parseInt(event.target.value);
     axios
@@ -77,6 +53,7 @@ const TableGame = () => {
         background: "#fff",
         minHeight: "100vh",
         boxSizing: "border-box",
+        paddingBottom: "20px",
       }}
     >
       {daftarGame !== null && (
@@ -102,7 +79,7 @@ const TableGame = () => {
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>
-                      <img src={item.image_url} alt="img" height="300" />
+                      <Image src={item.image_url} alt="img" width={200} />
                     </td>
                     <td>{item.name}</td>
                     <td>{item.genre}</td>
@@ -111,13 +88,9 @@ const TableGame = () => {
                     <td>{item.multiplayer ? "Yes" : "No"}</td>
                     <td>{item.release}</td>
                     <td>
-                      <button
-                        className="btnEdit"
-                        onClick={handleEdit}
-                        value={item.id}
-                      >
-                        Edit
-                      </button>
+                      <Link to={`/editGames/${item.id}`}>
+                        <button className="btnEdit">Edit</button>
+                      </Link>
                       &nbsp;
                       <button
                         className="btnDelete"
@@ -132,17 +105,6 @@ const TableGame = () => {
               })}
             </tbody>
           </table>
-          {/* Form */}
-          {/* {user && (
-            <>
-              <h1>Form Peserta</h1>
-              <form style={{ paddingBottom: "20px" }} onSubmit={handleSubmit}>
-                <label>Masukkan nama peserta:</label>
-                <input type="text" value={inputName} onChange={handleChange} />
-                <button>submit</button>
-              </form>
-            </>
-          )} */}
         </div>
       )}
     </section>

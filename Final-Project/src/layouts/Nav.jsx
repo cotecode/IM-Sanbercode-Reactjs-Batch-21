@@ -4,7 +4,6 @@ import { Menu, Dropdown } from "antd";
 import { UserContext } from "../context/UserContext";
 import { useHistory } from "react-router-dom";
 import { DownOutlined } from "@ant-design/icons";
-// import logo from "../img/logo.jpg";
 
 const Nav = () => {
   let history = useHistory();
@@ -17,15 +16,23 @@ const Nav = () => {
   };
 
   const menu = (
-    <Menu
-      style={{ marginTop: "20px", background: "#001529", width:"120px" }}
-    >
+    <Menu style={{ marginTop: "20px", background: "#001529", width: "150px" }}>
       <Menu.Item key="0">
-        <Link to="/movielisteditor" style={{color: "#edf5f5"}}>Settings Movie</Link>
+        <Link to="/movielisteditor" style={{ color: "#edf5f5" }}>
+          Settings Movie
+        </Link>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="1">
-        <Link to="/gamelisteditor" style={{color: "#edf5f5"}}>Settings Games</Link>
+        <Link to="/gamelisteditor" style={{ color: "#edf5f5" }}>
+          Settings Games
+        </Link>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="1">
+        <Link to="/changepassword" style={{ color: "#edf5f5" }}>
+          Change Password
+        </Link>
       </Menu.Item>
     </Menu>
   );
@@ -34,7 +41,6 @@ const Nav = () => {
     <div className="container-fluid">
       <div className="header">
         <Link to="/" className="logo">
-          {/* <img src={logo} alt="" height="50" /> */}
           <i class="fas fa-caret-square-right"></i>
           <span style={{ color: "yellow" }}>
             {" "}

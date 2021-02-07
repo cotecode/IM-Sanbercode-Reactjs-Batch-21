@@ -1,80 +1,76 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { Input } from "antd";
-import TextArea from "antd/lib/input/TextArea";
 import axios from "axios";
 
-const MovieForm = () => {
+const GameForm = () => {
   const [user] = useContext(UserContext);
-  const [daftarMovie, setDaftarMovie] = useState(null);
-  const [inputTitle, setInputTitle] = useState("");
-  const [inputDescription, setInputDescription] = useState("");
-  const [inputYear, setInputYear] = useState("");
-  const [inputDuration, setInputDuration] = useState("");
+  const [daftarGame, setDaftarGame] = useState(null);
+  const [inputName, setInputName] = useState("");
   const [inputGenre, setInputGenre] = useState("");
-  const [inputRating, setInputRating] = useState("");
-  const [inputReview, setInputReview] = useState("");
+  const [inputSinglePlayer, setInputSinglePlayer] = useState("");
+  const [inputMultiPlayer, setInputMultiPlayer] = useState("");
+  const [inputPlatform, setInputPlatform] = useState("");
+  const [inputRelease, setInputRelease] = useState("");
   const [inputImage, setInputImage] = useState("");
   const [currentId, setCurrentId] = useState(null);
 
   useEffect(() => {
-    if (daftarMovie === null) {
+    if (daftarGame === null) {
       axios
-        .get(`https://backendexample.sanbersy.com/api/data-movie`)
+        .get(`https://backendexample.sanbersy.com/api/data-game`)
         .then((res) => {
           let data = res.data;
-          setDaftarMovie(
+          setDaftarGame(
             data.map((el) => {
               return {
                 id: el.id,
-                title: el.title,
-                description: el.description,
-                year: el.year,
-                duration: el.duration,
+                name: el.name,
                 genre: el.genre,
-                rating: el.rating,
-                review: el.review,
+                singlePlayer: el.singlePlayer,
+                multiplayer: el.multiplayer,
+                platform: el.platform,
+                release: el.release,
                 image_url: el.image_url,
               };
             })
           );
         });
     }
-  }, [daftarMovie]);
+  }, [daftarGame]);
 
   // handle submit
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (currentId === null) {
+      // untuk create data baru
       axios
         .post(
-          `https://backendexample.sanbersy.com/api/data-movie`,
+          `https://backendexample.sanbersy.com/api/data-game`,
           {
-            title: inputTitle,
-            description: inputDescription,
-            year: inputYear,
-            duration: inputDuration,
+            name: inputName,
             genre: inputGenre,
-            rating: inputRating,
-            review: inputReview,
+            singlePlayer: inputSinglePlayer,
+            multiplayer: inputMultiPlayer,
+            platform: inputPlatform,
+            release: inputRelease,
             image_url: inputImage,
           },
           { headers: { Authorization: "Bearer " + user.token } }
         )
         .then((res) => {
           let data = res.data;
-          setDaftarMovie([
-            ...daftarMovie,
+          setDaftarGame([
+            ...daftarGame,
             {
               id: data.id,
-              title: data.title,
-              description: data.description,
-              year: data.year,
-              duration: data.duration,
+              name: data.name,
               genre: data.genre,
-              rating: data.rating,
-              review: data.review,
+              singlePlayer: data.singlePlayer,
+              multiplayer: data.multiplayer,
+              platform: data.platform,
+              release: data.release,
               image_url: data.image_url,
             },
           ]);
@@ -82,32 +78,30 @@ const MovieForm = () => {
     } else {
       axios
         .put(
-          `https://backendexample.sanbersy.com/api/data-movie/${currentId}`,
+          `https://backendexample.sanbersy.com/api/data-game/${currentId}`,
           {
-            title: inputTitle,
-            description: inputDescription,
-            year: inputYear,
-            duration: inputDuration,
+            name: inputName,
             genre: inputGenre,
-            rating: inputRating,
-            review: inputReview,
+            singlePlayer: inputSinglePlayer,
+            multiplayer: inputMultiPlayer,
+            platform: inputPlatform,
+            release: inputRelease,
             image_url: inputImage,
           },
           { headers: { Authorization: "Bearer " + user.token } }
         )
         .then(() => {
-          let singleMovie = daftarMovie.find((el) => el.id === currentId);
-          singleMovie.title = inputTitle;
-          setDaftarMovie([...daftarMovie]);
+          let singleGame = daftarGame.find((el) => el.id === currentId);
+          singleGame.name = inputName;
+          setDaftarGame([...daftarGame]);
         });
     }
-    setInputTitle("");
-    setInputDescription("");
-    setInputYear("");
-    setInputDuration("");
+    setInputName("");
     setInputGenre("");
-    setInputRating("");
-    setInputReview("");
+    setInputSinglePlayer("");
+    setInputMultiPlayer("");
+    setInputPlatform("");
+    setInputRelease("");
     setInputImage("");
     setCurrentId(null);
   };
@@ -117,32 +111,28 @@ const MovieForm = () => {
     let inputValue = event.target.value;
     let typeOfInput = event.target.name;
     switch (typeOfInput) {
-      case "title": {
-        setInputTitle(inputValue);
-        break;
-      }
-      case "description": {
-        setInputDescription(inputValue);
-        break;
-      }
-      case "year": {
-        setInputYear(inputValue);
-        break;
-      }
-      case "duration": {
-        setInputDuration(inputValue);
+      case "name": {
+        setInputName(inputValue);
         break;
       }
       case "genre": {
         setInputGenre(inputValue);
         break;
       }
-      case "rating": {
-        setInputRating(inputValue);
+      case "singlePlayer": {
+        setInputSinglePlayer(inputValue);
         break;
       }
-      case "review": {
-        setInputReview(inputValue);
+      case "multiplayer": {
+        setInputMultiPlayer(inputValue);
+        break;
+      }
+      case "platform": {
+        setInputPlatform(inputValue);
+        break;
+      }
+      case "release": {
+        setInputRelease(inputValue);
         break;
       }
       case "image_url": {
@@ -167,81 +157,74 @@ const MovieForm = () => {
       }}
     >
       <div>
-        <h1 style={{ fontSize: "30px" }}>Add Movie</h1>
+        <h1 style={{ fontSize: "30px" }}>Add Game</h1>
         <div style={{ border: "1px solid #aaa", padding: "20px" }}>
           <form onSubmit={handleSubmit}>
-            <label style={{ float: "left" }}>Title:</label>
+            <label style={{ float: "left" }}>Name :</label>
             <Input
               required
               type="text"
-              name="title"
-              value={inputTitle}
+              name="name"
+              value={inputName}
               onChange={handleChange}
             />
             <br />
             <br />
-            <label style={{ float: "left" }}>Description:</label>
-            <TextArea
-              required
-              rows="4"
-              cols="50"
-              name="description"
-              value={inputDescription}
-              onChange={handleChange}
-            />
-            <br />
-            <br />
-            <label style={{ float: "left" }}>Year:</label>
+            <label style={{ float: "left" }}>Genre :</label>
             <Input
               required
-              type="number"
-              name="year"
-              value={inputYear}
-              onChange={handleChange}
-            />
-            <br />
-            <br />
-            <label style={{ float: "left" }}>Duration:</label>
-            <Input
-              required
-              type="number"
-              name="duration"
-              value={inputDuration}
-              onChange={handleChange}
-            />
-            <br />
-            <br />
-            <label style={{ float: "left" }}>Genre:</label>
-            <Input
-              required
-              type="text"
               name="genre"
               value={inputGenre}
               onChange={handleChange}
             />
             <br />
             <br />
-            <label style={{ float: "left" }}>Rating:</label>
+            <label style={{ float: "left" }}>Singleplayer:</label>
             <Input
               required
               type="number"
-              max={10}
+              name="singlePlayer"
+              max={1}
               min={0}
-              name="rating"
-              value={inputRating}
+              value={inputSinglePlayer}
               onChange={handleChange}
             />
             <small>
-              <i>**Rating dari 0-10</i>
+              <i>**Jika 1 = Yes dan 0 = No</i>
             </small>
             <br />
             <br />
-            <label style={{ float: "left" }}>Review:</label>
+            <label style={{ float: "left" }}>Multiplayer:</label>
+            <Input
+              required
+              type="number"
+              name="multiplayer"
+              max={1}
+              min={0}
+              value={inputMultiPlayer}
+              onChange={handleChange}
+            />
+            <small>
+              <i>**Jika 1 = Yes dan 0 = No</i>
+            </small>
+            <br />
+            <br />
+            <label style={{ float: "left" }}>Platform:</label>
             <Input
               required
               type="text"
-              name="review"
-              value={inputReview}
+              name="platform"
+              value={inputPlatform}
+              onChange={handleChange}
+            />
+            <br />
+            <br />
+            <label style={{ float: "left" }}>Release:</label>
+            <Input
+              required
+              type="number"
+              name="release"
+              value={inputRelease}
               onChange={handleChange}
             />
             <br />
@@ -278,4 +261,4 @@ const MovieForm = () => {
   );
 };
 
-export default MovieForm;
+export default GameForm;

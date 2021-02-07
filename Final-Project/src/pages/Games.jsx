@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const { Meta } = Card;
-
 class Games extends Component {
   constructor(props) {
     super(props);
@@ -45,7 +44,6 @@ class Games extends Component {
             boxSizing: "border-box",
           }}
         >
-          {/* <div className="container-fluid"> */}
           <h1 style={{ fontSize: "30px", fontWeight: "bold" }}>Games</h1>
           <Row gutter={16}>
             {this.state.games.map((item) => {
@@ -73,7 +71,6 @@ class Games extends Component {
               );
             })}
           </Row>
-          {/* </div> */}
         </div>
       </>
     );

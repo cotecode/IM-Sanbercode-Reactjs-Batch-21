@@ -45,10 +45,8 @@ const DetailMovie = () => {
   };
 
   return (
-    <section style={{ minHeight: "100vh" }}>
-      {/* {daftarMovie ? ( */}
+    <section style={{ minHeight: "100vh" }} className="container-fluid">
       <div
-        className="container-fluid"
         style={{
           backgroundImage: `linear-gradient(rgba(56, 52, 52, 0.9), rgba(0, 0, 0, 0.9)), url(${daftarMovie.image_url})`,
           backgroundSize: "cover",
@@ -86,7 +84,6 @@ const DetailMovie = () => {
           </div>
         </div>
       </div>
-      {/* )} */}
     </section>
   );
 };

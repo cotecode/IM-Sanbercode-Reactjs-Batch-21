@@ -46,7 +46,6 @@ class Movies extends Component {
             boxSizing: "border-box",
           }}
         >
-          {/* <div className="container-fluid"> */}
           <h1 style={{ fontSize: "30px", fontWeight: "bold" }}>Movies</h1>
           <Row gutter={16}>
             {this.state.movie.map((item) => {
@@ -65,7 +64,6 @@ class Movies extends Component {
                         />
                       }
                     >
-                      {/* <Link to="/detailMovies/id" /> */}
                       <Meta title={item.title} description={item.year} />
                     </Card>
                   </Link>
@@ -74,7 +72,6 @@ class Movies extends Component {
               );
             })}
           </Row>
-          {/* </div> */}
         </div>
       </>
     );

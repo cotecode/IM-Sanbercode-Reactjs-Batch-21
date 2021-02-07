@@ -6,12 +6,12 @@ import {
   FolderOpenOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import TableGame from "../pages/TableGames/TableGame";
+import ChangePassword from "../pages/ChangePassword";
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
 
-const GameList = () => {
+const ChangePasswordList = () => {
   return (
     <Layout
       className="container-fluid"
@@ -51,9 +51,9 @@ const GameList = () => {
           </SubMenu>
         </Menu>
       </Sider>
-      <TableGame />
+      <ChangePassword />
     </Layout>
   );
 };
 
-export default GameList;
+export default ChangePasswordList;

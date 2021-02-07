@@ -37,10 +37,8 @@ const DetailGame = () => {
   }, [currentId, setCurrentId]);
 
   return (
-    <section style={{ minHeight: "100vh" }}>
-      {/* {daftarGame ? (setDaftarGame */}
+    <section style={{ minHeight: "100vh" }} className="container-fluid">
       <div
-        className="container-fluid"
         style={{
           backgroundImage: `linear-gradient(rgba(56, 52, 52, 0.9), rgba(0, 0, 0, 0.9)), url(${daftarGame.image_url})`,
           backgroundSize: "cover",
@@ -63,21 +61,36 @@ const DetailGame = () => {
             <br />
             <h3 style={{ fontSize: "30px", color: "#fff" }}>Mode</h3>
             <div>
-                <span style={{ fontSize: "20px", color: "#fff" }} class="fas fa-users"> Multiplayer: </span>
-                <span style={{ fontSize: "20px", color: "#fff", paddingLeft:"5px"}}>
-                    {daftarGame.multiplayer ? "Support" : "Not Support"}
-                </span>
+              <span
+                style={{ fontSize: "20px", color: "#fff" }}
+                class="fas fa-users"
+              >
+                {" "}
+                Multiplayer:{" "}
+              </span>
+              <span
+                style={{ fontSize: "20px", color: "#fff", paddingLeft: "5px" }}
+              >
+                {daftarGame.multiplayer ? "Support" : "Not Support"}
+              </span>
             </div>
             <div>
-                <span style={{ fontSize: "20px", color: "#fff" }} class="fas fa-user"> Singleplayer: </span>
-                <span style={{ fontSize: "20px", color: "#fff", paddingLeft:"5px"}}>
-                    {daftarGame.singlePlayer ? "Support" : "Not Support"}
-                </span>
+              <span
+                style={{ fontSize: "20px", color: "#fff" }}
+                class="fas fa-user"
+              >
+                {" "}
+                Singleplayer:{" "}
+              </span>
+              <span
+                style={{ fontSize: "20px", color: "#fff", paddingLeft: "5px" }}
+              >
+                {daftarGame.singlePlayer ? "Support" : "Not Support"}
+              </span>
             </div>
           </div>
         </div>
       </div>
-      {/* )} */}
     </section>
   );
 };

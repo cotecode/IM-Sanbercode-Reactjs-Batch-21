@@ -12,6 +12,10 @@ import MovieList from "./MovieList";
 import GameList from "./GameList";
 import EditMovie from "../pages/EditMovie";
 import DetailGame from "../pages/DetailGame";
+import EditGame from "../pages/EditGame";
+import MovieFormList from "./MovieFormList";
+import GameFormList from "./GameFormList";
+import ChangePasswordList from "./ChangePasswordList";
 
 const Section = () => {
   const [user] = useContext(UserContext);
@@ -38,7 +42,11 @@ const Section = () => {
         <Route exact path="/games" user={user} component={Games} />
         <PrivateRoute exact path="/movielisteditor" user={user} component={MovieList} />
         <PrivateRoute exact path="/gamelisteditor" user={user} component={GameList} />
+        <PrivateRoute exact path="/addMovie" user={user} component={MovieFormList} />
+        <PrivateRoute exact path="/addGame" user={user} component={GameFormList} />
+        <PrivateRoute exact path="/changepassword" user={user} component={ChangePasswordList} />
         <PrivateRoute exact path={`/editMovies/:id`} user={user} component={EditMovie} />
+        <PrivateRoute exact path={`/editGames/:id`} user={user} component={EditGame} />
         <LoginRoute exact path="/login" user={user} component={Login} />
         <LoginRoute exact path="/register" user={user} component={Register} />
       </Switch>

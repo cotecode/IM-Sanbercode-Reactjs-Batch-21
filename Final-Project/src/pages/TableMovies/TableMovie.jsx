@@ -2,19 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 import { Link } from "react-router-dom";
+import { Image } from "antd";
 
 const TableMovie = () => {
   const [user] = useContext(UserContext);
   const [daftarMovie, setDaftarMovie] = useState(null);
-  const [inputTitle, setInputTitle] = useState("");
-  const [inputDescription, setInputDescription] = useState("");
-  const [inputYear, setInputYear] = useState("");
-  const [inputDuration, setInputDuration] = useState("");
-  const [inputGenre, setInputGenre] = useState("");
-  const [inputRating, setInputRating] = useState("");
-  const [inputReview, setInputReview] = useState("");
-  const [inputImage, setInputImage] = useState("");
-  const [currentId, setCurrentId] = useState(null);
 
   useEffect(() => {
     if (daftarMovie === null) {
@@ -41,109 +33,6 @@ const TableMovie = () => {
     }
   }, [daftarMovie]);
 
-  // handle submit
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (currentId === null) {
-      // untuk create data baru
-      axios
-        .post(
-          `https://backendexample.sanbersy.com/api/data-movie`,
-          {
-            title: inputTitle,
-            description: inputDescription,
-            year: inputYear,
-            duration: inputDuration,
-            genre: inputGenre,
-            rating: inputRating,
-            review: inputReview,
-            image_url: inputImage,
-          },
-          { headers: { Authorization: "Bearer " + user.token } }
-        )
-        .then((res) => {
-          let data = res.data;
-          setDaftarMovie([
-            ...daftarMovie,
-            {
-              id: data.id,
-              title: data.title,
-              description: data.description,
-              year: data.year,
-              duration: data.duration,
-              genre: data.genre,
-              rating: data.rating,
-              review: data.review,
-              image_url: data.image_url,
-            },
-          ]);
-        });
-    } else {
-      axios
-        .put(
-          `https://backendexample.sanbersy.com/api/data-movie/${currentId}`,
-          {
-            title: inputTitle,
-            description: inputDescription,
-            year: inputYear,
-            duration: inputDuration,
-            genre: inputGenre,
-            rating: inputRating,
-            review: inputReview,
-            image_url: inputImage,
-          },
-          { headers: { Authorization: "Bearer " + user.token } }
-        )
-        .then(() => {
-          let singleMovie = daftarMovie.find((el) => el.id === currentId);
-          singleMovie.title = inputTitle;
-          setDaftarMovie([...daftarMovie]);
-        });
-    }
-    setInputTitle("");
-    setInputDescription("");
-    setInputYear("");
-    setInputDuration("");
-    setInputGenre("");
-    setInputRating("");
-    setInputReview("");
-    setInputImage("");
-    setCurrentId(null);
-  };
-
-  // handle change
-  const handleChange = (event) => {
-    let inputValue = event.target.value;
-    setInputTitle(inputValue);
-    setInputDescription(inputValue);
-    setInputYear(inputValue);
-    setInputDuration(inputValue);
-    setInputGenre(inputValue);
-    setInputRating(inputValue);
-    setInputImage(inputValue);
-    setInputReview(inputValue);
-  };
-
-  // handle edit
-  const handleEdit = (event) => {
-    let idMovie = event.target.value;
-    axios
-      .get(`https://backendexample.sanbersy.com/api/data-movie/${idMovie}`)
-      .then((res) => {
-        let data = res.data;
-        setInputTitle(data.title);
-        setInputDescription(data.description);
-        setInputYear(data.year);
-        setInputDuration(data.duration);
-        setInputGenre(data.genre);
-        setInputRating(data.rating);
-        setInputReview(data.review);
-        setInputImage(data.image_url);
-        setCurrentId(data.id);
-      });
-  };
-
   const handleDelete = (event) => {
     let idMovie = parseInt(event.target.value);
     axios
@@ -165,6 +54,7 @@ const TableMovie = () => {
         background: "#fff",
         minHeight: "100vh",
         boxSizing: "border-box",
+        paddingBottom: "20px",
       }}
     >
       {daftarMovie !== null && (
@@ -190,7 +80,7 @@ const TableMovie = () => {
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>
-                      <img src={item.image_url} alt="img" height="300" />
+                      <Image src={item.image_url} alt="img" width={200} />
                     </td>
                     <td>{item.title}</td>
                     <td>{item.genre}</td>
@@ -200,9 +90,7 @@ const TableMovie = () => {
                     <td>{item.year}</td>
                     <td>
                       <Link to={`/editMovies/${item.id}`}>
-                        <button className="btnEdit">
-                          Edit
-                        </button>
+                        <button className="btnEdit">Edit</button>
                       </Link>
                       &nbsp;
                       <button
@@ -218,17 +106,6 @@ const TableMovie = () => {
               })}
             </tbody>
           </table>
-          {/* Form */}
-          {/* {user && (
-            <>
-              <h1>Form Peserta</h1>
-              <form style={{ paddingBottom: "20px" }} onSubmit={handleSubmit}>
-                <label>Masukkan nama peserta:</label>
-                <input type="text" value={inputTitle} onChange={handleChange} />
-                <button>submit</button>
-              </form>
-            </>
-          )} */}
         </div>
       )}
     </section>

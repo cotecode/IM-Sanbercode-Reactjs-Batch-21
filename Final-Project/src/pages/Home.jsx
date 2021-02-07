@@ -5,82 +5,6 @@ import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 
-const contentStyle = {
-  height: "50vh",
-  color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  background: "#333",
-};
-
-// class Home extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       movie: [],
-//     };
-//   }
-
-//   componentDidMount() {
-//     axios
-//       .get(`https://backendexample.sanbersy.com/api/data-movie`)
-//       .then((res) => {
-//         let movie = res.data.slice(0, 4).map((el) => {
-//           return {
-//             id: el.id,
-//             title: el.title,
-//             description: el.description,
-//             year: el.year,
-//             duration: el.duration,
-//             genre: el.genre,
-//             rating: el.rating,
-//             review: el.review,
-//             image_url: el.image_url,
-//           };
-//         });
-//         this.setState({ movie });
-//       });
-//   }
-
-//   render() {
-//     return (
-//       <>
-//         <div className="jumbotron">
-//           <Carousel autoplay>
-//             <div>
-//               <h3 style={contentStyle}>1</h3>
-//             </div>
-//             <div>
-//               <h3 style={contentStyle}>2</h3>
-//             </div>
-//           </Carousel>
-//         </div>
-//         <div className="site-card-wrapper container-fluid" style={{background: "#fff"}}>
-//           {/* <div className="container-fluid"> */}
-//             <h1 style={{fontSize: "30px", fontWeight: "bold"}}>Upcoming Movies</h1>
-//             <Row gutter={16}>
-//               {this.state.movie.map((item) => {
-//                 return (
-//                   <Col span={6}>
-//                     <Card
-//                       hoverable
-//                       style={{ width: 240, borderRadius: "10px"}}
-//                       cover={<img alt="example" src={item.image_url} style={{borderRadius: "10px"}} height="400px"  />}
-//                     >
-//                       <Meta title={item.title} description={item.year} />
-//                     </Card>
-//                     <br />
-//                   </Col>
-//                 );
-//               })}
-//             </Row>
-//           {/* </div> */}
-//         </div>
-//       </>
-//     );
-//   }
-// }
-
 const Home = () => {
   const [daftarMovie, setDaftarMovie] = useState(null);
   const [daftarGame, setDaftarGame] = useState(null);
@@ -111,6 +35,34 @@ const Home = () => {
     }
   }, [daftarMovie]);
 
+  const contentStyle1 = {
+    height: "50vh",
+    color: "#fff",
+    textAlign: "center",
+    fontSize: "30px",
+    backgroundImage: `linear-gradient(rgba(56, 52, 52, 0.9), rgba(0, 0, 0, 0.9)), url(https://news.xbox.com/en-us/wp-content/uploads/sites/2/Publisher_XOne_Hero-hero-1.jpg?resize=940%2C528)`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+
+  const contentStyle2 = {
+    height: "50vh",
+    color: "#fff",
+    textAlign: "center",
+    fontSize: "30px",
+    backgroundImage: `linear-gradient(rgba(56, 52, 52, 0.9), rgba(0, 0, 0, 0.9)), url(https://wallpaperaccess.com/full/329633.jpg)`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+
   // GAME
   useEffect(() => {
     if (daftarGame === null) {
@@ -138,16 +90,18 @@ const Home = () => {
 
   return (
     <>
-      <div className="jumbotron">
-        <Carousel autoplay>
-          <div>
-            <h3 style={contentStyle}>1</h3>
-          </div>
-          <div>
-            <h3 style={contentStyle}>2</h3>
-          </div>
-        </Carousel>
-      </div>
+      <Carousel autoplay>
+        <div>
+          <h3 style={contentStyle2}>
+            The best site to help you find the best movies and games.
+            <br />
+            Start getting more review with Psyche Review
+          </h3>
+        </div>
+        <div>
+          <h3 style={contentStyle1}>Best Site Review Movies and Games</h3>
+        </div>
+      </Carousel>
       <div
         className="site-card-wrapper container-fluid"
         style={{ background: "#fff", padding: "50px", boxSizing: "border-box" }}

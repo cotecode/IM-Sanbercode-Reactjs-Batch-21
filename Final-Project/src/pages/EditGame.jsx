@@ -3,39 +3,36 @@ import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { Input } from "antd";
-import TextArea from "antd/lib/input/TextArea";
 
-const EditMovie = () => {
+const EditGame = () => {
   const [user] = useContext(UserContext);
   let { id } = useParams();
   let history = useHistory();
   const [currentId, setCurrentId] = useState(null);
   const [input, setInput] = useState({
-    title: "",
-    description: "",
-    year: 0,
-    duration: 0,
+    name: "",
     genre: "",
-    rating: 0,
-    review: "",
+    singlePlayer: null,
+    multiplayer: null,
+    platform: "",
+    release: 0,
     image_url: "",
   });
 
   useEffect(() => {
     if (currentId === null) {
       axios
-        .get(`https://backendexample.sanbersy.com/api/data-movie/${id}`)
+        .get(`https://backendexample.sanbersy.com/api/data-game/${id}`)
         .then((res) => {
-          let dataMovie = res.data;
+          let dataGame = res.data;
           setInput({
-            title: dataMovie.title,
-            description: dataMovie.description,
-            year: dataMovie.year,
-            duration: dataMovie.duration,
-            genre: dataMovie.genre,
-            rating: dataMovie.rating,
-            review: dataMovie.review,
-            image_url: dataMovie.image_url,
+            name: dataGame.name,
+            genre: dataGame.genre,
+            singlePlayer: dataGame.singlePlayer,
+            multiplayer: dataGame.multiplayer,
+            platform: dataGame.platform,
+            release: dataGame.release,
+            image_url: dataGame.image_url,
           });
           setCurrentId(id);
         });
@@ -46,32 +43,28 @@ const EditMovie = () => {
     let typeOfInput = event.target.name;
 
     switch (typeOfInput) {
-      case "title": {
-        setInput({ ...input, title: event.target.value });
-        break;
-      }
-      case "description": {
-        setInput({ ...input, description: event.target.value });
-        break;
-      }
-      case "year": {
-        setInput({ ...input, year: event.target.value });
-        break;
-      }
-      case "duration": {
-        setInput({ ...input, duration: event.target.value });
+      case "name": {
+        setInput({ ...input, name: event.target.value });
         break;
       }
       case "genre": {
         setInput({ ...input, genre: event.target.value });
         break;
       }
-      case "rating": {
-        setInput({ ...input, rating: event.target.value });
+      case "singlePlayer": {
+        setInput({ ...input, singlePlayer: event.target.value });
         break;
       }
-      case "review": {
-        setInput({ ...input, review: event.target.value });
+      case "multiplayer": {
+        setInput({ ...input, multiplayer: event.target.value });
+        break;
+      }
+      case "platform": {
+        setInput({ ...input, platform: event.target.value });
+        break;
+      }
+      case "release": {
+        setInput({ ...input, release: event.target.value });
         break;
       }
       case "image_url": {
@@ -89,15 +82,14 @@ const EditMovie = () => {
 
     axios
       .put(
-        `https://backendexample.sanbersy.com/api/data-movie/${id}`,
+        `https://backendexample.sanbersy.com/api/data-game/${id}`,
         {
-          title: input.title,
-          description: input.description,
-          year: input.year,
-          duration: input.duration,
+          name: input.name,
           genre: input.genre,
-          rating: input.rating,
-          review: input.review,
+          singlePlayer: input.singlePlayer,
+          multiplayer: input.multiplayer,
+          platform: input.platform,
+          release: input.release,
           image_url: input.image_url,
         },
         { headers: { Authorization: "Bearer " + user.token } }
@@ -118,46 +110,15 @@ const EditMovie = () => {
       }}
     >
       <div>
-        <h1 style={{ fontSize: "30px" }}>Edit Movie</h1>
+        <h1 style={{ fontSize: "30px" }}>Edit Game</h1>
         <div style={{ border: "1px solid #aaa", padding: "20px" }}>
           <form onSubmit={handleSubmit}>
-            <label style={{ float: "left" }}>Title:</label>
+            <label style={{ float: "left" }}>Name:</label>
             <Input
               required
               type="text"
-              name="title"
-              value={input.title}
-              onChange={handleChange}
-            />
-            <br />
-            <br />
-            <label style={{ float: "left" }}>Description:</label>
-            <TextArea
-              required
-              rows="4"
-              cols="50"
-              name="description"
-              value={input.description}
-              onChange={handleChange}
-            />
-            <br />
-            <br />
-            <label style={{ float: "left" }}>Year:</label>
-            <Input
-              required
-              type="number"
-              name="year"
-              value={input.year}
-              onChange={handleChange}
-            />
-            <br />
-            <br />
-            <label style={{ float: "left" }}>Duration:</label>
-            <Input
-              required
-              type="number"
-              name="duration"
-              value={input.duration}
+              name="name"
+              value={input.name}
               onChange={handleChange}
             />
             <br />
@@ -165,34 +126,57 @@ const EditMovie = () => {
             <label style={{ float: "left" }}>Genre:</label>
             <Input
               required
-              type="text"
               name="genre"
               value={input.genre}
               onChange={handleChange}
             />
             <br />
             <br />
-            <label style={{ float: "left" }}>Rating:</label>
+            <label style={{ float: "left" }}>Singleplayer:</label>
+            <br />
             <Input
-              required
-              max={10}
-              min={0}
               type="number"
-              name="rating"
-              value={input.rating}
+              name="singlePlayer"
+              max={1}
+              min={0}
+              value={input.singlePlayer}
               onChange={handleChange}
             />
             <small>
-              <i>**Rating dari 0-10</i>
+              <i>**Jika 1 = Yes dan 0 = No</i>
             </small>
             <br />
             <br />
-            <label style={{ float: "left" }}>Review:</label>
+            <label style={{ float: "left" }}>Multiplayer:</label>
+            <Input
+              type="number"
+              name="multiplayer"
+              max={1}
+              min={0}
+              value={input.multiplayer}
+              onChange={handleChange}
+            />
+            <small>
+              <i>**Jika 1 = Yes dan 0 = No</i>
+            </small>
+            <br />
+            <br />
+            <label style={{ float: "left" }}>Platform:</label>
             <Input
               required
               type="text"
-              name="review"
-              value={input.review}
+              name="platform"
+              value={input.platform}
+              onChange={handleChange}
+            />
+            <br />
+            <br />
+            <label style={{ float: "left" }}>Release:</label>
+            <Input
+              required
+              type="number"
+              name="release"
+              value={input.release}
               onChange={handleChange}
             />
             <br />
@@ -229,4 +213,4 @@ const EditMovie = () => {
   );
 };
 
-export default EditMovie;
+export default EditGame;
