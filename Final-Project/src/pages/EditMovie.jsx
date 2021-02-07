@@ -87,15 +87,12 @@ const EditMovie = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    let title = input.title;
-    let description = input.description.toString();
-
     axios
       .put(
         `https://backendexample.sanbersy.com/api/data-movie/${id}`,
         {
-          title,
-          description,
+          title: input.title,
+          description: input.description,
           year: input.year,
           duration: input.duration,
           genre: input.genre,
@@ -108,17 +105,6 @@ const EditMovie = () => {
       .then(() => {
         history.push("/");
       });
-
-    setInput({
-      title: "",
-      description: "",
-      year: 0,
-      duration: 0,
-      genre: "",
-      rating: 0,
-      review: "",
-      image_url: "",
-    });
   };
 
   return (

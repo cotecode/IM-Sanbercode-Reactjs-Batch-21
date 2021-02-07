@@ -38,7 +38,7 @@ const Section = () => {
         <Route exact path="/games" user={user} component={Games} />
         <PrivateRoute exact path="/movielisteditor" user={user} component={MovieList} />
         <PrivateRoute exact path="/gamelisteditor" user={user} component={GameList} />
-        <PrivateRoute exact path="/editMovies/:id" user={user} component={EditMovie} />
+        <PrivateRoute exact path={`/editMovies/:id`} user={user} component={EditMovie} />
         <LoginRoute exact path="/login" user={user} component={Login} />
         <LoginRoute exact path="/register" user={user} component={Register} />
       </Switch>

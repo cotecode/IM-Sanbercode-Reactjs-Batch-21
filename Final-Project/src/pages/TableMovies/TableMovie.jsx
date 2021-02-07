@@ -199,8 +199,8 @@ const TableMovie = () => {
                     <td>{item.duration}</td>
                     <td>{item.year}</td>
                     <td>
-                      <Link to={`/editMovies/{id}`}>
-                        <button className="btnEdit" value={item.id}>
+                      <Link to={`/editMovies/${item.id}`}>
+                        <button className="btnEdit">
                           Edit
                         </button>
                       </Link>
