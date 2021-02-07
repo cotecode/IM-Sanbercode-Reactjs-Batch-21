@@ -13,7 +13,14 @@ const { Sider } = Layout;
 
 const MovieList = () => {
   return (
-    <Layout className="container-fluid">
+    <Layout
+      className="container-fluid"
+      style={{
+        background: "#fff",
+        minHeight: "100vh",
+        boxSizing: "border-box",
+      }}
+    >
       <Sider width={280} className="site-layout-background">
         <Menu
           mode="inline"

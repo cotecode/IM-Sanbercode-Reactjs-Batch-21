@@ -107,8 +107,8 @@ const TableGame = () => {
                     <td>{item.name}</td>
                     <td>{item.genre}</td>
                     <td>{item.platform}</td>
-                    <td>{item.singlePlayer}</td>
-                    <td>{item.multiplayer}</td>
+                    <td>{item.singlePlayer ? "Yes" : "No"}</td>
+                    <td>{item.multiplayer ? "Yes" : "No"}</td>
                     <td>{item.release}</td>
                     <td>
                       <button

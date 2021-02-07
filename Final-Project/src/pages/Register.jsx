@@ -10,7 +10,6 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
-    conf_pass: "",
   });
 
   const handleSubmit = (event) => {
@@ -20,7 +19,6 @@ const Register = () => {
         name: input.name,
         email: input.email,
         password: input.password,
-        conf_pass: input.conf_pass,
       })
       .then((res) => {
         var user = res.data.user;
@@ -48,10 +46,6 @@ const Register = () => {
       }
       case "password": {
         setInput({ ...input, password: value });
-        break;
-      }
-      case "conf_pass": {
-        setInput({ ...input, conf_pass: value });
         break;
       }
       default: {
@@ -120,14 +114,14 @@ const Register = () => {
                 value={input.password}
               />
               <br />
-              <label>Confirm Password: </label>
+              {/* <label>Confirm Password: </label>
               <Input
                 type="password"
-                name="conf_pass"
+                name="password"
                 onChange={handleChange}
-                value={input.conf_pass}
+                value={input.password}
               />
-              <br />
+              <br /> */}
               <button className="btnAuth">Submit</button>
               <div style={{ textAlign: "center" }}>
                 Already have an account? <Link to="/login">Login Now</Link>

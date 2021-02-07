@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
+import { Link } from "react-router-dom";
 
 const TableMovie = () => {
   const [user] = useContext(UserContext);
@@ -168,57 +169,55 @@ const TableMovie = () => {
     >
       {daftarMovie !== null && (
         <div>
-            <h1 style={{ fontSize: "30px" }}>Table Movie</h1>
-            <table id="table-list">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Image</th>
-                  <th>Tittle</th>
-                  <th>Genre</th>
-                  <th>Description</th>
-                  <th>Rating</th>
-                  <th>Duration</th>
-                  <th>Year</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {daftarMovie.map((item, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>
-                        <img src={item.image_url} alt="img" height="300" />
-                      </td>
-                      <td>{item.title}</td>
-                      <td>{item.genre}</td>
-                      <td>{item.description}</td>
-                      <td>{item.rating}</td>
-                      <td>{item.duration}</td>
-                      <td>{item.year}</td>
-                      <td>
-                        <button
-                          className="btnEdit"
-                          onClick={handleEdit}
-                          value={item.id}
-                        >
+          <h1 style={{ fontSize: "30px" }}>Table Movie</h1>
+          <table id="table-list">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Image</th>
+                <th>Tittle</th>
+                <th>Genre</th>
+                <th>Description</th>
+                <th>Rating</th>
+                <th>Duration</th>
+                <th>Year</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {daftarMovie.map((item, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>
+                      <img src={item.image_url} alt="img" height="300" />
+                    </td>
+                    <td>{item.title}</td>
+                    <td>{item.genre}</td>
+                    <td>{item.description}</td>
+                    <td>{item.rating}</td>
+                    <td>{item.duration}</td>
+                    <td>{item.year}</td>
+                    <td>
+                      <Link to={`/editMovies/{id}`}>
+                        <button className="btnEdit" value={item.id}>
                           Edit
                         </button>
-                        &nbsp;
-                        <button
-                          className="btnDelete"
-                          onClick={handleDelete}
-                          value={item.id}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                      </Link>
+                      &nbsp;
+                      <button
+                        className="btnDelete"
+                        onClick={handleDelete}
+                        value={item.id}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
           {/* Form */}
           {/* {user && (
             <>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Card, Col, Row } from "antd";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const { Meta } = Card;
@@ -45,28 +46,28 @@ class Games extends Component {
           }}
         >
           {/* <div className="container-fluid"> */}
-          <h1 style={{ fontSize: "30px", fontWeight: "bold" }}>
-            Games
-          </h1>
+          <h1 style={{ fontSize: "30px", fontWeight: "bold" }}>Games</h1>
           <Row gutter={16}>
             {this.state.games.map((item) => {
               return (
                 <Col span={6}>
-                  <Card
-                    hoverable
-                    style={{ width: 240, borderRadius: "10px" }}
-                    cover={
-                      <img
-                        alt="example"
-                        src={item.image_url}
-                        style={{ borderRadius: "10px" }}
-                        height="365px"
-                      />
-                    }
-                  >
-                    <Meta title={item.name} description={item.release} />
-                    <Meta description={item.platform} />
-                  </Card>
+                  <Link to={`/detailGames/${item.id}`}>
+                    <Card
+                      hoverable
+                      style={{ width: 240, borderRadius: "10px" }}
+                      cover={
+                        <img
+                          alt="example"
+                          src={item.image_url}
+                          style={{ borderRadius: "10px" }}
+                          height="365px"
+                        />
+                      }
+                    >
+                      <Meta title={item.name} description={item.release} />
+                      <Meta description={item.platform} />
+                    </Card>
+                  </Link>
                   <br />
                 </Col>
               );

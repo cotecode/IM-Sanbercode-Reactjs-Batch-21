@@ -1,7 +1,7 @@
-// import React, { Component } from "react";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, Col, Row, Carousel} from "antd";
+import { Card, Col, Row, Carousel } from "antd";
+import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 
@@ -162,20 +162,22 @@ const Home = () => {
               {daftarMovie.map((item) => {
                 return (
                   <Col span={6}>
-                    <Card
-                      hoverable
-                      style={{ width: 240, borderRadius: "10px" }}
-                      cover={
-                        <img
-                          alt="example"
-                          src={item.image_url}
-                          style={{ borderRadius: "10px" }}
-                          height="365px"
-                        />
-                      }
-                    >
-                      <Meta title={item.title} description={item.year} />
-                    </Card>
+                    <Link to={`/detailMovies/${item.id}`}>
+                      <Card
+                        hoverable
+                        style={{ width: 240, borderRadius: "10px" }}
+                        cover={
+                          <img
+                            alt="example"
+                            src={item.image_url}
+                            style={{ borderRadius: "10px" }}
+                            height="365px"
+                          />
+                        }
+                      >
+                        <Meta title={item.title} description={item.year} />
+                      </Card>
+                    </Link>
                   </Col>
                 );
               })}
@@ -193,21 +195,23 @@ const Home = () => {
               {daftarGame.map((item) => {
                 return (
                   <Col span={6}>
-                    <Card
-                      hoverable
-                      style={{ width: 240, borderRadius: "10px" }}
-                      cover={
-                        <img
-                          alt="example"
-                          src={item.image_url}
-                          style={{ borderRadius: "10px" }}
-                          height="365px"
-                        />
-                      }
-                    >
-                      <Meta title={item.name} description={item.release} />
-                      <Meta description={item.platform} />
-                    </Card>
+                    <Link to={`/detailGames/${item.id}`}>
+                      <Card
+                        hoverable
+                        style={{ width: 240, borderRadius: "10px" }}
+                        cover={
+                          <img
+                            alt="example"
+                            src={item.image_url}
+                            style={{ borderRadius: "10px" }}
+                            height="365px"
+                          />
+                        }
+                      >
+                        <Meta title={item.name} description={item.release} />
+                        <Meta description={item.platform} />
+                      </Card>
+                    </Link>
                     <br />
                   </Col>
                 );

@@ -104,3 +104,10 @@ body {
 .btnAuth:hover {
   background: #4997de;
 }
+
+/* button details game */
+.btnMode {
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 10px;
+}

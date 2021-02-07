@@ -1,26 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { Image, Col } from "antd";
 
-const DetailMovie = ({ match }) => {
+const DetailMovie = () => {
   let { id } = useParams();
-  const [daftarMovie, setDaftarMovie] = useState(null);
-
-  const fetchMovie = () => {
-    axios
-      .get(`https://backendexample.sanbersy.com/api/data-movie/${id}`)
-      .then((response) => {
-        setDaftarMovie(response.data);
-      })
-      .catch((error) => console.log(error.messages));
-  };
+  const [currentId, setCurrentId] = useState(null);
+  const [daftarMovie, setDaftarMovie] = useState({
+    title: "",
+    description: "",
+    year: 0,
+    duration: 0,
+    genre: "",
+    rating: 0,
+    review: "",
+    image_url: "",
+  });
 
   useEffect(() => {
-    if (daftarMovie === null) {
-      fetchMovie(match.params.id);
+    if (currentId === null) {
+      axios
+        .get(`https://backendexample.sanbersy.com/api/data-movie/${id}`)
+        .then((res) => {
+          let data = res.data;
+          setDaftarMovie({
+            title: data.title,
+            description: data.description,
+            year: data.year,
+            duration: data.duration,
+            genre: data.genre,
+            rating: data.rating,
+            review: data.review,
+            image_url: data.image_url,
+          });
+          setCurrentId(id);
+        });
     }
-    console.log("");
-  }, [daftarMovie]);
+  }, [currentId, setCurrentId]);
 
   const time_convert = (num) => {
     const hours = Math.floor(num / 60);
@@ -29,42 +45,49 @@ const DetailMovie = ({ match }) => {
   };
 
   return (
-    <>
-      {daftarMovie ? (
-        <section>
-          <h1>Detail Movie</h1>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            {daftarMovie.map((item) => {
-              return (
-                <>
-                  <img src={item.image_url} width="200" alt="example" />
-                  <div>
-                    <h1>
-                      {item.title}
-                      <span>{item.year}</span>
-                    </h1>
-                    <h4>
-                      <time_convert value={item.duration} />| {item.genre} |
-                      <span>
-                        <i
-                          class="fas fa-star"
-                          style={{ color: "rgb(105, 39, 105)" }}
-                        ></i>
-                        {item.rating}
-                      </span>
-                    </h4>
-                    <h3>Description</h3>
-                    <p>{item.description}</p>
-                  </div>
-                </>
-              );
-            })}
+    <section style={{ minHeight: "100vh" }}>
+      {/* {daftarMovie ? ( */}
+      <div
+        className="container-fluid"
+        style={{
+          backgroundImage: `linear-gradient(rgba(56, 52, 52, 0.9), rgba(0, 0, 0, 0.9)), url(${daftarMovie.image_url})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div style={{ display: "flex", padding: "50px" }}>
+          <Col span={6}>
+            <Image width={300} src={daftarMovie.image_url} />
+          </Col>
+          <div>
+            <h1 style={{ fontSize: "30px", color: "#fff" }}>
+              {daftarMovie.title}
+              <span> ({daftarMovie.year})</span>
+            </h1>
+            <h4 style={{ fontSize: "15px", color: "#fff" }}>
+              {daftarMovie.duration} Minutes | {daftarMovie.genre} |
+              <span>
+                <i class="fas fa-star" style={{ color: "yellow" }}></i>
+                {daftarMovie.rating} / 10
+              </span>
+            </h4>
+            <br />
+            <h3 style={{ fontSize: "30px", color: "#fff" }}>Description</h3>
+            <p style={{ fontSize: "20px", color: "#fff" }}>
+              {daftarMovie.description}
+            </p>
+            <br />
+            <br />
+            <h3 style={{ fontSize: "30px", color: "#fff" }}>Review</h3>
+            <p style={{ fontSize: "20px", color: "#fff" }}>
+              {daftarMovie.review}
+            </p>
           </div>
-        </section>
-      ) : (
-        <></>
-      )}
-    </>
+        </div>
+      </div>
+      {/* )} */}
+    </section>
   );
 };
 
