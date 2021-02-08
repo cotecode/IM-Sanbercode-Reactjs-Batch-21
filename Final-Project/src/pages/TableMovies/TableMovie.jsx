@@ -80,7 +80,9 @@ const TableMovie = () => {
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>
-                      <Image src={item.image_url} alt="img" width={200} />
+                      <Link to={`/detailMovies/${item.id}`}>
+                        <Image src={item.image_url} alt="img" width={200} />
+                      </Link>
                     </td>
                     <td>{item.title}</td>
                     <td>{item.genre}</td>

@@ -73,6 +73,7 @@ const ChangePassword = () => {
           <br />
           <label>Old Password :</label>
           <Input.Password
+            required
             type="password"
             name="current_password"
             value={input.current_password}
