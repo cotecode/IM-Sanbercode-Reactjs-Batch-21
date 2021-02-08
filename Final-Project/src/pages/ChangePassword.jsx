@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import { Input } from "antd";
+import { Input, Alert } from "antd";
 import axios from "axios";
 
 const ChangePassword = () => {

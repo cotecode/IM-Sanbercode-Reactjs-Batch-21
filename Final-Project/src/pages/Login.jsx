@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 import { Input } from "antd";
 
 const Login = () => {
-
   let history = useHistory();
   const [, setUser] = useContext(UserContext);
   const [input, setInput] = useState({ email: "", password: "" });
@@ -58,6 +57,7 @@ const Login = () => {
           background: "#fff",
           width: "600px",
           margin: "0 auto",
+          boxShadow: "0px 10px 20px 0px rgba(50, 50, 50, 0.52)",
         }}
       >
         <div
@@ -96,7 +96,7 @@ const Login = () => {
             />
             <br />
             <label for="password">Password: </label>
-            <Input
+            <Input.Password
               required
               type="password"
               name="password"

@@ -69,7 +69,7 @@ const TableMovie = () => {
                 <th>Genre</th>
                 <th>Description</th>
                 <th>Rating</th>
-                <th>Duration</th>
+                <th>Duration (minutes)</th>
                 <th>Year</th>
                 <th>Action</th>
               </tr>

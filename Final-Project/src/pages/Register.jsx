@@ -63,6 +63,7 @@ const Register = () => {
             background: "#fff",
             width: "600px",
             margin: "0 auto",
+            boxShadow: "0px 10px 20px 0px rgba(50, 50, 50, 0.52)",
           }}
         >
           <div
@@ -92,6 +93,7 @@ const Register = () => {
               ></div>
               <label for="name">Username: </label>
               <Input
+                required
                 type="text"
                 name="name"
                 onChange={handleChange}
@@ -100,6 +102,7 @@ const Register = () => {
               <br />
               <label>Email: </label>
               <Input
+                required
                 type="email"
                 name="email"
                 onChange={handleChange}
@@ -107,7 +110,8 @@ const Register = () => {
               />
               <br />
               <label>Password: </label>
-              <Input
+              <Input.Password
+                required
                 type="password"
                 name="password"
                 onChange={handleChange}

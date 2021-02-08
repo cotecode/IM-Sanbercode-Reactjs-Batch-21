@@ -16,7 +16,7 @@ const Nav = () => {
   };
 
   const menu = (
-    <Menu style={{ marginTop: "20px", background: "#001529", width: "150px" }}>
+    <Menu style={{ background: "#001529" }}>
       <Menu.Item key="0">
         <Link to="/movielisteditor" style={{ color: "#edf5f5" }}>
           Settings Movie
@@ -29,7 +29,7 @@ const Nav = () => {
         </Link>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="1">
+      <Menu.Item key="2">
         <Link to="/changepassword" style={{ color: "#edf5f5" }}>
           Change Password
         </Link>
@@ -68,16 +68,21 @@ const Nav = () => {
             </>
           )}
           {user && (
-            <Dropdown overlay={menu} placement="bottomLeft">
-              <a
-                className="ant-dropdown-link"
-                onClick={(e) => e.preventDefault()}
-                href="pusing"
-                style={{ color: "#edf5f5", margin: "0 30px" }}
+            <Menu.Item>
+              <Dropdown
+                overlay={menu}
+                placement="bottomLeft"
+                trigger={["click"]}
               >
-                Settings <DownOutlined style={{paddingLeft:"5px"}}/>
-              </a>
-            </Dropdown>
+                <a
+                  className="ant-dropdown-link"
+                  onClick={(e) => e.preventDefault()}
+                  href="pusing"
+                >
+                  Settings <DownOutlined style={{ paddingLeft: "5px" }} />
+                </a>
+              </Dropdown>
+            </Menu.Item>
           )}
           {user && (
             <Menu.Item>
