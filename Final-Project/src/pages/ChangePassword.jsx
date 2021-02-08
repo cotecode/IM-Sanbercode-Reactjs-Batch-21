@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import { Input, Alert } from "antd";
+import { Input } from "antd";
 import axios from "axios";
 
 const ChangePassword = () => {
@@ -67,9 +67,12 @@ const ChangePassword = () => {
       <h1 style={{ fontSize: "30px" }}>Change Password</h1>
       <div style={{ border: "1px solid #aaa", padding: "20px" }}>
         <form style={{ paddingBottom: "50px" }} onSubmit={handleSubmit}>
+          <label>Username :</label>
+          <Input disabled type="text" placeholder={user.name} />
+          <br />
+          <br />
           <label>Old Password :</label>
-          <Input
-            required
+          <Input.Password
             type="password"
             name="current_password"
             value={input.current_password}
@@ -78,7 +81,7 @@ const ChangePassword = () => {
           <br />
           <br />
           <label>New Password :</label>
-          <Input
+          <Input.Password
             required
             type="password"
             name="new_password"
@@ -88,7 +91,7 @@ const ChangePassword = () => {
           <br />
           <br />
           <label>Confirm New Password:</label>
-          <Input
+          <Input.Password
             required
             type="password"
             name="new_confirm_password"
