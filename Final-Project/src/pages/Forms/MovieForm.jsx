@@ -209,6 +209,9 @@ const MovieForm = () => {
               value={inputDuration}
               onChange={handleChange}
             />
+            <small>
+              <i>**Satuan Menit</i>
+            </small>
             <br />
             <br />
             <label style={{ float: "left" }}>Genre:</label>

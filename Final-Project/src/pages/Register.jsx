@@ -79,18 +79,11 @@ const Register = () => {
                 style={{
                   textAlign: "center",
                   fontSize: "30px",
-                }}
-              >
-                REGISTER
-              </h1>
-              <div
-                style={{
-                  width: "300px",
-                  margin: "0 auto",
-                  border: "2px solid rgb(105, 39, 105)",
                   marginBottom: "30px",
                 }}
-              ></div>
+              >
+                Register
+              </h1>
               <label for="name">Username: </label>
               <Input
                 required

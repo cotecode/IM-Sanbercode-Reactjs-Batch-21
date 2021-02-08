@@ -73,18 +73,11 @@ const Login = () => {
               style={{
                 textAlign: "center",
                 fontSize: "30px",
-              }}
-            >
-              LOGIN
-            </h1>
-            <div
-              style={{
-                width: "300px",
-                margin: "0 auto",
-                border: "2px solid rgb(105, 39, 105)",
                 marginBottom: "30px",
               }}
-            ></div>
+            >
+              Login
+            </h1>
             <label for="email">Email: </label>
             <Input
               required
