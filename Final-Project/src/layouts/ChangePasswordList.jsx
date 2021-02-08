@@ -25,7 +25,7 @@ const ChangePasswordList = () => {
         <Menu
           mode="inline"
           defaultSelectedKeys={["1"]}
-          defaultOpenKeys={["sub1"]}
+          defaultOpenKeys={["sub3"]}
           style={{ height: "100%", borderRight: 0 }}
         >
           <SubMenu key="sub1" icon={<FolderOpenOutlined />} title="List">

@@ -24,8 +24,8 @@ return (
     <Sider width={280} className="site-layout-background">
       <Menu
         mode="inline"
-        defaultSelectedKeys={["1"]}
-        defaultOpenKeys={["sub1"]}
+        defaultSelectedKeys={["6"]}
+        defaultOpenKeys={["sub2"]}
         style={{ height: "100%", borderRight: 0 }}
       >
         <SubMenu key="sub1" icon={<FolderOpenOutlined />} title="List">
